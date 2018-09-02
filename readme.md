@@ -6,6 +6,7 @@ The program uses CSVHelper library to load csv file to memory.
 
 To run the file:
 Driver.exe insurer.csv
+where the insurer.csv can be supplied with its absolute path.
 
 The program created can be improved by passing multiple CSV filenames. Currently, it only supports a single 
 CSV files. The class architecture is not applied. If time permitted, I can Dependency Injection to supply some properties.
