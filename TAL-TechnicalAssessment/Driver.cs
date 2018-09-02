@@ -19,50 +19,37 @@ namespace TAL_TechnicalAssessment
 
             string fn = @args[0];
             TechnicalAssessmentAnswer Answer = new TechnicalAssessmentAnswer(fn);
-            IEnumerable<ClientRecord> IEClientRecord = Answer.ReadCSVFile();
+            IEnumerable<ClientRecordExt> IEClientRecord = Answer.ReadCSVFile();
 
-            foreach (ClientRecord cr in IEClientRecord)
+            foreach (ClientRecordExt cr in IEClientRecord)
             {
-                ClientRecord s = cr;
-                Console.WriteLine(s);
+                ClientRecordExt s = cr;
+                Console.WriteLine(s.CompanyCode);
             }
         }
-
-        /**
-         * Remove dollar sign prefix from the input.
-         */
-        private static String RemoveDollarSignPrefix(string input)
-        {
-            //return input.StartsWith("$") ? input.Substring(1) : input;
-            string s = Regex.Replace(input, @"[""$]", string.Empty);
-            return s;
-        }
-
     }
 
     class TechnicalAssessmentAnswer
+    {
+        public TextReader Reader;
+
+        public TechnicalAssessmentAnswer(String CSVFileName)
         {
-            public TextReader Reader;
-            private bool isFirstLine;
-
-            public TechnicalAssessmentAnswer(String CSVFileName)
-            {
-                Reader = File.OpenText(CSVFileName);
-                isFirstLine = true;
-            }
-
-            public IEnumerable<ClientRecord> ReadCSVFile()
-            { 
-                IEnumerable<ClientRecord> allValues = null; 
-                var csvReader = new CsvReader(Reader);
-                csvReader.Configuration.RegisterClassMap<ConvertUsingClassMap>();
-                csvReader.Configuration.HasHeaderRecord = true;
-                allValues = csvReader.GetRecords<ClientRecord>();
-                return allValues;
-            }
+            Reader = File.OpenText(CSVFileName);
         }
 
-    sealed class ConvertUsingClassMap : ClassMap<ClientRecord>
+        public IEnumerable<ClientRecordExt> ReadCSVFile()
+        { 
+            IEnumerable<ClientRecordExt> allValues = null; 
+            var csvReader = new CsvReader(Reader);
+            csvReader.Configuration.RegisterClassMap<ConvertUsingClassMap>();
+            csvReader.Configuration.HasHeaderRecord = true;
+            allValues = csvReader.GetRecords<ClientRecordExt>();
+            return allValues;
+        }
+    }
+
+    sealed class ConvertUsingClassMap : ClassMap<ClientRecordExt>
     {
         public ConvertUsingClassMap()
         {
@@ -167,6 +154,34 @@ namespace TAL_TechnicalAssessment
                     return "Initial";
                 }
             });
+            Map(m => m.PolicyOwner).Name("Policy owner  1");
+            Map(m => m.AnnualisedPremium).ConvertUsing(row =>
+            {
+                var sAnnualAmount = row.GetField("Annualised premium");
+                var sb_trim = Regex.Replace(sAnnualAmount, @"[$,]", "");
+
+                return Convert.ToDecimal(sb_trim);
+
+            });
+
+            Map(m => m.PremiumStatus).Name("Premium status");
+
         }
+    }
+
+    class ClientRecordExt : ClientRecord
+    {
+        public string PolicyOwner { get; set; }
+        public decimal AnnualisedPremium { get; set; }
+        public string PremiumStatus { get; set; }
+    }
+
+    class ClientOutput
+    {
+        public string CompanyCode { get; set;
+        public string PolicyNo { get; set; }
+        public string PolicyOwner { get; set; }
+        public decimal AnnualisedPremium { get; set; }
+        public string PremiumStatus { get; set; }
     }
 }
