@@ -21,10 +21,35 @@ namespace TAL_TechnicalAssessment
             TechnicalAssessmentAnswer Answer = new TechnicalAssessmentAnswer(fn);
             IEnumerable<ClientRecordExt> IEClientRecord = Answer.ReadCSVFile();
 
+            Dictionary<string, ClientOutput> DictOutput = new Dictionary<string, ClientOutput>();
             foreach (ClientRecordExt cr in IEClientRecord)
             {
-                ClientRecordExt s = cr;
-                Console.WriteLine(s.CompanyCode);
+                string key = cr.CompanyCode + cr.PolicyNo;
+                if (DictOutput.ContainsKey(key))
+                {
+                    ClientOutput clOutput = DictOutput[key];
+                    clOutput.AnnualisedPremium += cr.AnnualisedPremium;
+                    DictOutput[key] = clOutput;
+                }
+                else
+                {
+                    ClientOutput clOutput = new ClientOutput();
+                    clOutput.CompanyCode = cr.CompanyCode;
+                    clOutput.PolicyNo = cr.PolicyNo;
+                    clOutput.PolicyOwner = cr.PolicyOwner;
+                    clOutput.AnnualisedPremium = cr.AnnualisedPremium;
+                    clOutput.PremiumStatus = cr.PremiumStatus;
+                    DictOutput.Add(key, clOutput);
+                }
+            }
+
+            foreach (KeyValuePair<string, ClientOutput> entry in DictOutput)
+            {
+                ClientOutput cOutput = entry.Value;
+                Console.WriteLine("Company Code: {0}, Policy Number: {1}, " +
+                    "Policy Owner: {2}, Annualised Premium: {3}, PremiumStatus: {4}",
+                    cOutput.CompanyCode, cOutput.PolicyNo, cOutput.PolicyOwner,
+                    cOutput.AnnualisedPremium, cOutput.PremiumStatus);
             }
         }
     }
@@ -178,7 +203,7 @@ namespace TAL_TechnicalAssessment
 
     class ClientOutput
     {
-        public string CompanyCode { get; set;
+        public string CompanyCode { get; set; }
         public string PolicyNo { get; set; }
         public string PolicyOwner { get; set; }
         public decimal AnnualisedPremium { get; set; }
