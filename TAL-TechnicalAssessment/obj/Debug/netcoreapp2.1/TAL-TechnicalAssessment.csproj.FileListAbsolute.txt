@@ -1,0 +1,11 @@
+C:\Users\vireo\Documents\TAL-Technical Assesment Question\workspace\TAL-TechnicalAssessment\bin\Debug\netcoreapp2.1\TAL-TechnicalAssessment.deps.json
+C:\Users\vireo\Documents\TAL-Technical Assesment Question\workspace\TAL-TechnicalAssessment\bin\Debug\netcoreapp2.1\TAL-TechnicalAssessment.runtimeconfig.json
+C:\Users\vireo\Documents\TAL-Technical Assesment Question\workspace\TAL-TechnicalAssessment\bin\Debug\netcoreapp2.1\TAL-TechnicalAssessment.runtimeconfig.dev.json
+C:\Users\vireo\Documents\TAL-Technical Assesment Question\workspace\TAL-TechnicalAssessment\bin\Debug\netcoreapp2.1\TAL-TechnicalAssessment.dll
+C:\Users\vireo\Documents\TAL-Technical Assesment Question\workspace\TAL-TechnicalAssessment\bin\Debug\netcoreapp2.1\TAL-TechnicalAssessment.pdb
+C:\Users\vireo\Documents\TAL-Technical Assesment Question\workspace\TAL-TechnicalAssessment\obj\Debug\netcoreapp2.1\TAL-TechnicalAssessment.csprojAssemblyReference.cache
+C:\Users\vireo\Documents\TAL-Technical Assesment Question\workspace\TAL-TechnicalAssessment\obj\Debug\netcoreapp2.1\TAL-TechnicalAssessment.csproj.CoreCompileInputs.cache
+C:\Users\vireo\Documents\TAL-Technical Assesment Question\workspace\TAL-TechnicalAssessment\obj\Debug\netcoreapp2.1\TAL-TechnicalAssessment.AssemblyInfoInputs.cache
+C:\Users\vireo\Documents\TAL-Technical Assesment Question\workspace\TAL-TechnicalAssessment\obj\Debug\netcoreapp2.1\TAL-TechnicalAssessment.AssemblyInfo.cs
+C:\Users\vireo\Documents\TAL-Technical Assesment Question\workspace\TAL-TechnicalAssessment\obj\Debug\netcoreapp2.1\TAL-TechnicalAssessment.dll
+C:\Users\vireo\Documents\TAL-Technical Assesment Question\workspace\TAL-TechnicalAssessment\obj\Debug\netcoreapp2.1\TAL-TechnicalAssessment.pdb

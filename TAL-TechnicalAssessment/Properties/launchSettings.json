@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "TAL-TechnicalAssessment": {
+      "commandName": "Project",
+      "commandLineArgs": "\"C:\\Users\\vireo\\Documents\\TAL-Technical Assesment Question\\workspace\\insurer-policy.csv\""
+    }
+  }
+}
