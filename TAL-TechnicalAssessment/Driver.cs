@@ -51,6 +51,8 @@ namespace TAL_TechnicalAssessment
                     cOutput.CompanyCode, cOutput.PolicyNo, cOutput.PolicyOwner,
                     cOutput.AnnualisedPremium, cOutput.PremiumStatus);
             }
+
+            Answer.Close();
         }
     }
 
@@ -72,6 +74,15 @@ namespace TAL_TechnicalAssessment
             allValues = csvReader.GetRecords<ClientRecordExt>();
             return allValues;
         }
+
+        public void Close()
+        {
+            if (Reader != null)
+            {
+                Reader.Close();
+            }
+        }
+        
     }
 
     sealed class ConvertUsingClassMap : ClassMap<ClientRecordExt>
